@@ -54,6 +54,38 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void KEY_Click_Listener() {
+    int gpio_pin[8] = {GPIO_PIN_0, GPIO_PIN_1, GPIO_PIN_2, GPIO_PIN_3, GPIO_PIN_4,GPIO_PIN_5, GPIO_PIN_6,GPIO_PIN_7};
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, GPIO_PIN_SET);
+    for (int i = 0; i < 8; i++) {
+        const int x = HAL_GPIO_ReadPin(GPIOD, gpio_pin[i]);
+    }
+
+
+    int x = -1, y = -1;
+    for (int i = 0; i < 4; i++) {
+
+
+        HAL_GPIO_WritePin(GPIOD, gpio_pin[i], GPIO_PIN_RESET);
+        for (int j = 4; j < 8; j++) {
+            HAL_Delay(20);
+            const int G = HAL_GPIO_ReadPin(GPIOD, gpio_pin[j] );
+
+            if (G == GPIO_PIN_RESET) {
+                x = i; y = j;
+            }
+
+        }
+
+        HAL_GPIO_WritePin(GPIOD, gpio_pin[i], GPIO_PIN_SET);
+
+    }
+    //
+
+
+
+
+    }
 
 /* USER CODE END 0 */
 
@@ -66,6 +98,12 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
 
+    char arr[4][4] = {
+        {'A', 'B', 'C', 'D'},
+        {'E', 'F', 'G', 'H'},
+        {'I', 'J', 'K', 'L'},
+        {'M', 'N', 'O', 'P'}
+    };
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -94,8 +132,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-    HAL_Delay(1000);
+    // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+    // HAL_Delay(1000);
+    KEY_Click_Listener();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
