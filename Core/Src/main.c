@@ -54,38 +54,6 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void KEY_Click_Listener() {
-    int gpio_pin[8] = {GPIO_PIN_0, GPIO_PIN_1, GPIO_PIN_2, GPIO_PIN_3, GPIO_PIN_4,GPIO_PIN_5, GPIO_PIN_6,GPIO_PIN_7};
-    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, GPIO_PIN_SET);
-    for (int i = 0; i < 8; i++) {
-        const int x = HAL_GPIO_ReadPin(GPIOD, gpio_pin[i]);
-    }
-
-
-    int x = -1, y = -1;
-    for (int i = 0; i < 4; i++) {
-
-
-        HAL_GPIO_WritePin(GPIOD, gpio_pin[i], GPIO_PIN_RESET);
-        for (int j = 4; j < 8; j++) {
-            HAL_Delay(20);
-            const int G = HAL_GPIO_ReadPin(GPIOD, gpio_pin[j] );
-
-            if (G == GPIO_PIN_RESET) {
-                x = i; y = j;
-            }
-
-        }
-
-        HAL_GPIO_WritePin(GPIOD, gpio_pin[i], GPIO_PIN_SET);
-
-    }
-    //
-
-
-
-
-    }
 
 /* USER CODE END 0 */
 
@@ -98,12 +66,6 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
 
-    char arr[4][4] = {
-        {'A', 'B', 'C', 'D'},
-        {'E', 'F', 'G', 'H'},
-        {'I', 'J', 'K', 'L'},
-        {'M', 'N', 'O', 'P'}
-    };
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -134,7 +96,6 @@ int main(void)
   {
     // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
     // HAL_Delay(1000);
-    KEY_Click_Listener();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -159,15 +120,14 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 168;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 25;
+  RCC_OscInitStruct.PLL.PLLN = 336;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 5;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
