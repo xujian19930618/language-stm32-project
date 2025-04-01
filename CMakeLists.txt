@@ -35,7 +35,14 @@ message("Build type: " ${CMAKE_BUILD_TYPE})
 enable_language(C ASM)
 
 # Create an executable object type
-add_executable(${CMAKE_PROJECT_NAME})
+add_executable(${CMAKE_PROJECT_NAME}
+        Drivers/User/Inc/lcd.h
+        Drivers/User/Src/lcd.c
+        Drivers/User/Inc/lcd_image.h
+        Drivers/User/Src/lcd_image.c
+        Drivers/User/Inc/lcd_fonts.h
+        Drivers/User/Src/lcd_fonts.c
+        Drivers/User/Inc/lcd_spi_154.h)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
@@ -53,6 +60,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
+        Drivers/User/Inc
 )
 
 # Add project symbols (macros)

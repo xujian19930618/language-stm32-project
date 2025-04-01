@@ -9,6 +9,4 @@ void WS2812_SendData(unsigned char R,unsigned char G,unsigned char B);
 void delay_ms(unsigned int ms);		//@24.000MHz
 
 
-#endif
-
 #endif //WS2812_H
