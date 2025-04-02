@@ -128,11 +128,11 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART1_UART_Init();
-  MX_SPI3_Init();
-  MX_RTC_Init();
-  MX_SDIO_SD_Init();
-  MX_USB_DEVICE_Init();
+  // MX_USART1_UART_Init();
+  // MX_SPI3_Init();
+  // MX_RTC_Init();
+  // MX_SDIO_SD_Init();
+  // MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -143,7 +143,7 @@ int main(void)
   {
     // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
     // HAL_Delay(1000);
-    KEY_Click_Listener();
+    // KEY_Click_Listener();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
