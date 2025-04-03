@@ -23,6 +23,7 @@
 #include "spi.h"
 #include "usart.h"
 #include "usb_device.h"
+#include "usbd_hid.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -92,6 +93,17 @@ void KEY_Click_Listener() {
 
     }
 
+void SendKeyReport(uint8_t key) {
+  uint8_t report[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+  report[2] = key;  // 将按键码放入报告缓冲区
+
+  USBD_HID_SendReport(&hUsbDeviceFS, report, sizeof(report));
+  HAL_Delay(100);  // 延时以模拟按键按下
+
+  memset(report, 0, sizeof(report));  // 清空报告缓冲区以模拟按键释放
+  USBD_HID_SendReport(&hUsbDeviceFS, report, sizeof(report));
+  HAL_Delay(100);
+}
 /* USER CODE END 0 */
 
 /**
@@ -108,6 +120,7 @@ int main(void)
         {'I', 'J', 'K', 'L'},
         {'M', 'N', 'O', 'P'}
     };
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -128,19 +141,20 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART1_UART_Init();
-  MX_SPI3_Init();
-  MX_RTC_Init();
-  MX_SDIO_SD_Init();
+  // MX_USART1_UART_Init();
+  // MX_SPI3_Init();
+  // MX_RTC_Init();
+  // MX_SDIO_SD_Init();
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    SendKeyReport(0x06);
+    HAL_Delay(100);
     // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
     // HAL_Delay(1000);
     // KEY_Click_Listener();
