@@ -64,6 +64,32 @@
 #define 	DARK_YELLOW     0x808000    //	暗黄色
 #define 	DARK_GREY       0x404040    //	暗灰色
 
+
+/*------------------------------------------------------  引脚配置宏 -------------------------------------------------*/
+
+#define 	LCD_SCK_PIN      		GPIO_PIN_3                          // SCK引脚， 需要重定义SPI3的IO口复用
+#define 	LCD_SCK_PORT     		GPIOB                               // SCK引脚用到的端口
+#define 	GPIO_LCD_SCK_CLK        __HAL_RCC_GPIOB_CLK_ENABLE()  		// SCK引脚IO口时钟
+
+#define 	LCD_SDA_PIN      		 GPIO_PIN_5                         // SDA引脚， 需要重定义SPI3的IO口复用
+#define 	LCD_SDA_PORT    		 GPIOB                              // SDA引脚用到的端口
+#define 	GPIO_LCD_SDA_CLK        __HAL_RCC_GPIOB_CLK_ENABLE()  		// SDA引脚IO口时钟
+
+
+#define 	LCD_CS_PIN       		GPIO_PIN_11							// CS片选引脚，低电平有效
+#define 	LCD_CS_PORT      		GPIOD                               // CS引脚用到的端口
+#define 	GPIO_LCD_CS_CLK     	__HAL_RCC_GPIOD_CLK_ENABLE()	    // CS引脚IO口时钟
+
+#define     LCD_DC_PIN				GPIO_PIN_12				            // 数据指令选择  引脚
+#define	    LCD_DC_PORT				GPIOD                               // 数据指令选择  GPIO端口
+#define 	GPIO_LCD_DC_CLK     	__HAL_RCC_GPIOD_CLK_ENABLE()	    // 数据指令选择  GPIO时钟
+
+#define     LCD_Backlight_PIN		GPIO_PIN_13				            // 背光  引脚
+#define	    LCD_Backlight_PORT		GPIOD                               // 背光 GPIO端口
+#define 	GPIO_LCD_Backlight_CLK  __HAL_RCC_GPIOD_CLK_ENABLE()	    // 背光 GPIO时钟
+
+
+
 /*------------------------------------------------ 函数声明 ----------------------------------------------*/
 
 void  SPI_LCD_Init(void);                                   // 液晶屏以及SPI初始化
@@ -108,29 +134,6 @@ void  LCD_FillCircle(uint16_t x, uint16_t y, uint16_t r);                       
 //>>>>>	绘制单色图片
 void 	LCD_DrawImage(uint16_t x,uint16_t y,uint16_t width,uint16_t height,const uint8_t *pImage) ;
 
-
-/*------------------------------------------------------  引脚配置宏 -------------------------------------------------*/
-
-#define 	LCD_SCK_PIN      		GPIO_PIN_3                          // SCK引脚， 需要重定义SPI3的IO口复用
-#define 	LCD_SCK_PORT     		GPIOB                               // SCK引脚用到的端口
-#define 	GPIO_LCD_SCK_CLK        __HAL_RCC_GPIOB_CLK_ENABLE()  		// SCK引脚IO口时钟
-
-#define 	LCD_SDA_PIN      		 GPIO_PIN_5                         // SDA引脚， 需要重定义SPI3的IO口复用
-#define 	LCD_SDA_PORT    		 GPIOB                              // SDA引脚用到的端口
-#define 	GPIO_LCD_SDA_CLK        __HAL_RCC_GPIOB_CLK_ENABLE()  		// SDA引脚IO口时钟
-
-
-#define 	LCD_CS_PIN       		GPIO_PIN_11							// CS片选引脚，低电平有效
-#define 	LCD_CS_PORT      		GPIOD                               // CS引脚用到的端口
-#define 	GPIO_LCD_CS_CLK     	__HAL_RCC_GPIOD_CLK_ENABLE()	    // CS引脚IO口时钟
-
-#define     LCD_DC_PIN				GPIO_PIN_12				            // 数据指令选择  引脚
-#define	    LCD_DC_PORT				GPIOD                               // 数据指令选择  GPIO端口
-#define 	GPIO_LCD_DC_CLK     	__HAL_RCC_GPIOD_CLK_ENABLE()	    // 数据指令选择  GPIO时钟
-
-#define     LCD_Backlight_PIN		GPIO_PIN_13				            // 背光  引脚
-#define	    LCD_Backlight_PORT		GPIOD                               // 背光 GPIO端口
-#define 	GPIO_LCD_Backlight_CLK  __HAL_RCC_GPIOD_CLK_ENABLE()	    // 背光 GPIO时钟
 
 
 /*--------------------------------------------------------- 控制宏 ---------------------------------------------------*/
