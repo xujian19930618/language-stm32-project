@@ -42,7 +42,9 @@ add_executable(${CMAKE_PROJECT_NAME}
         Drivers/User/Src/lcd_image.c
         Drivers/User/Inc/lcd_fonts.h
         Drivers/User/Src/lcd_fonts.c
-        Drivers/User/Inc/lcd_spi_154.h)
+        Drivers/User/Inc/lcd_spi_154.h
+        Drivers/User/Inc/key.h
+        Drivers/User/Src/key.c)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)

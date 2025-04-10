@@ -23,12 +23,12 @@
 #include "spi.h"
 #include "usart.h"
 #include "usb_device.h"
-#include "usbd_hid.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "usbd_hid.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,50 +60,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void KEY_Click_Listener() {
-    int gpio_pin[8] = {GPIO_PIN_0, GPIO_PIN_1, GPIO_PIN_2, GPIO_PIN_3, GPIO_PIN_4,GPIO_PIN_5, GPIO_PIN_6,GPIO_PIN_7};
-    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, GPIO_PIN_SET);
-    for (int i = 0; i < 8; i++) {
-        const int x = HAL_GPIO_ReadPin(GPIOD, gpio_pin[i]);
-    }
 
-
-    int x = -1, y = -1;
-    for (int i = 0; i < 4; i++) {
-
-
-        HAL_GPIO_WritePin(GPIOD, gpio_pin[i], GPIO_PIN_RESET);
-        for (int j = 4; j < 8; j++) {
-            HAL_Delay(20);
-            const int G = HAL_GPIO_ReadPin(GPIOD, gpio_pin[j] );
-
-            if (G == GPIO_PIN_RESET) {
-                x = i; y = j;
-            }
-
-        }
-
-        HAL_GPIO_WritePin(GPIOD, gpio_pin[i], GPIO_PIN_SET);
-
-    }
-    //
-
-
-
-
-    }
-
-void SendKeyReport(uint8_t key) {
-  uint8_t report[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-  report[2] = key;  // 将按键码放入报告缓冲区
-
-  USBD_HID_SendReport(&hUsbDeviceFS, report, sizeof(report));
-  HAL_Delay(100);  // 延时以模拟按键按下
-
-  memset(report, 0, sizeof(report));  // 清空报告缓冲区以模拟按键释放
-  USBD_HID_SendReport(&hUsbDeviceFS, report, sizeof(report));
-  HAL_Delay(100);
-}
 /* USER CODE END 0 */
 
 /**
@@ -148,15 +105,31 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
   /* USER CODE END 2 */
-
+  uint8_t key = 0;
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    SendKeyReport(0x06);
-    HAL_Delay(100);
+
+    // if (KEY_Scan() && key == 0) {
+    //   key = 1;
+    //   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,GPIO_PIN_SET);
+    //   SendKeyReport(0x04, 0x06);
+    // }else if (KEY_Scan() && key == 1) {
+    //   key = 0;
+    //   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,GPIO_PIN_RESET);
+    //   SendKeyReport(0x04, 0x19);
+    // }
+    // if (KEY_Scan() ) {
+    //
+    //   uint8_t key = 0x04 + 'C' - 'C';
+    //   SendKeyReport(0x00, key);
+    // }
+    // HAL_Delay(1000);
     // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
     // HAL_Delay(1000);
+
+
     // KEY_Click_Listener();
     /* USER CODE END WHILE */
 
