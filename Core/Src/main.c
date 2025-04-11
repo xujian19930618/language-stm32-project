@@ -29,6 +29,8 @@
 /* USER CODE BEGIN Includes */
 
 #include "usbd_hid.h"
+#include "74hc165d.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -43,7 +45,17 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+void SendKeyReport(uint8_t fn,uint8_t key) {
+  uint8_t report[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+  report[2] = key;  // 将按键码放入报告缓冲区
 
+  USBD_HID_SendReport(&hUsbDeviceFS, report, sizeof(report));
+  HAL_Delay(100);  // 延时以模拟按键按下
+
+  memset(report, 0, sizeof(report));  // 清空报告缓冲区以模拟按键释放
+  USBD_HID_SendReport(&hUsbDeviceFS, report, sizeof(report));
+  HAL_Delay(100);
+}
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -71,12 +83,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 
-    char arr[4][4] = {
-        {'A', 'B', 'C', 'D'},
-        {'E', 'F', 'G', 'H'},
-        {'I', 'J', 'K', 'L'},
-        {'M', 'N', 'O', 'P'}
-    };
+    uint8_t arr[8] = {0x04, 0x05, 0x06, 0x07, 0x08, 0x09,0x10};
 
   /* USER CODE END 1 */
 
@@ -111,6 +118,15 @@ int main(void)
   while (1)
   {
 
+    const int temp = HC165D_Read();
+    if (temp > 0 ) {
+      int k = 7;
+      while (k >= 0) {
+        if (temp & (0x01 << k))
+        SendKeyReport(0x00, arr[k]);
+        k--;
+      }
+    }
     // if (KEY_Scan() && key == 0) {
     //   key = 1;
     //   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,GPIO_PIN_SET);
