@@ -30,6 +30,7 @@
 
 #include "usbd_hid.h"
 #include "74hc165d.h"
+#include "epd.h"
 
 /* USER CODE END Includes */
 
@@ -110,25 +111,26 @@ int main(void)
   // MX_RTC_Init();
   // MX_SDIO_SD_Init();
   MX_USB_DEVICE_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   /* USER CODE END 2 */
-
+  epd_init();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     // SendKeyReport(0x00, 0x05);
-    const int temp = HC165D_Read();
-    HAL_Delay(10);
-    const int temp1 = HC165D_Read();
-    if (temp == temp1 && temp > 0 ) {
-      int k = 7;
-      while (k >= 0) {
-        if (!(temp & (0x01 << k)))
-        SendKeyReport(0x00, arr[k]);
-        k--;
-      }
-    }
+    // const int temp = HC165D_Read();
+    // HAL_Delay(10);
+    // const int temp1 = HC165D_Read();
+    // if (temp == temp1 && temp > 0 ) {
+    //   int k = 7;
+    //   while (k >= 0) {
+    //     if (!(temp & (0x01 << k)))
+    //     SendKeyReport(0x00, arr[k]);
+    //     k--;
+    //   }
+    // }
     // if (KEY_Scan() && key == 0) {
     //   key = 1;
     //   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,GPIO_PIN_SET);
