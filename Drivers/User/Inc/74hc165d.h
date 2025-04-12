@@ -8,20 +8,20 @@
 #include "main.h"
 
 // PL#:
-#define HC165D_PL_PORT  GPIOB
-#define HC165D_PL_PIN   GPIO_PIN_5
+#define HC165D_PL_PORT  GPIOF
+#define HC165D_PL_PIN   GPIO_PIN_7
 
 // CE#: 时钟使能输入(可直接接地)
-#define HC165D_CE_PORT  GPIOB
-#define HC165D_CE_PIN   GPIO_PIN_6
+#define HC165D_CE_PORT  GPIOF
+#define HC165D_CE_PIN   GPIO_PIN_8
 
 // CP: CLK
-#define HC165D_CP_PORT  GPIOB
-#define HC165D_CP_PIN   GPIO_PIN_7
+#define HC165D_CP_PORT  GPIOF
+#define HC165D_CP_PIN   GPIO_PIN_9
 
 // Q7: 串行输出
-#define HC165D_Q7_PORT  GPIOB
-#define HC165D_Q7_PIN   GPIO_PIN_8
+#define HC165D_Q7_PORT  GPIOF
+#define HC165D_Q7_PIN   GPIO_PIN_10
 
 
 // Q7#: 上一阶段的互补输出

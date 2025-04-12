@@ -31,12 +31,14 @@ uint8_t HC165D_Read() {
     // 步骤三: CE#为低电平, 使能时钟输入
 
     //步骤四: 时钟CP每产生一个上升沿, 移位寄存器中的数据从高位(D7)到低位(Q0)一次移出Q7
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 7; i++) {
         temp <<= 1;
         HAL_GPIO_WritePin(HC165D_CE_PORT, HC165D_CE_PIN, GPIO_PIN_RESET);
         HAL_Delay(2);
 
         HAL_GPIO_WritePin(HC165D_CE_PORT, HC165D_CE_PIN, GPIO_PIN_SET);
+        GPIO_PinState hal_gpio_read_pin = HAL_GPIO_ReadPin(HC165D_Q7_PORT, HC165D_Q7_PIN);
+
         if (HAL_GPIO_ReadPin(HC165D_Q7_PORT, HC165D_Q7_PIN)) {
             temp |= 0x01;
         }
