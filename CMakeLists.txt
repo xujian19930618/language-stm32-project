@@ -36,33 +36,23 @@ enable_language(C ASM)
 
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME}
-        Drivers/User/Inc/lcd.h
-        Drivers/User/Src/lcd.c
-        Drivers/User/Inc/lcd_image.h
-        Drivers/User/Src/lcd_image.c
-        Drivers/User/Inc/lcd_fonts.h
-        Drivers/User/Src/lcd_fonts.c
-        Drivers/User/Inc/lcd_spi_154.h
-        Drivers/User/Inc/key.h
-        Drivers/User/Src/key.c
-        Drivers/User/Inc/74hc165d.h
-        Drivers/User/Src/74hc165d.c
-        Drivers/User/Inc/DEV_Config.h
-        Drivers/User/Src/DEV_Config.c
-        Drivers/User/Inc/EPD_4in2bc.h
-        Drivers/User/Src/EPD_4in2bc.c
-        Drivers/User/Inc/fonts.h
-        Drivers/User/Src/font8.c
-        Drivers/User/Src/font12.c
-        Drivers/User/Src/font12CN.c
-        Drivers/User/Src/font16.c
-        Drivers/User/Src/font24.c
-        Drivers/User/Src/font24CN.c
-        Drivers/User/Src/font20.c
-        Drivers/User/Inc/GUI_Paint.h
-        Drivers/User/Src/GUI_Paint.c
-        Drivers/User/Inc/epd.h
-        Drivers/User/Src/epd.c)
+        User/Lcd/Inc/lcd.h
+        User/Lcd/Src/lcd.c
+        User/Lcd/Inc/lcd_image.h
+        User/Lcd/Src/lcd_image.c
+        User/Lcd/Inc/lcd_fonts.h
+        User/Lcd/Src/lcd_fonts.c
+        User/Lcd/Inc/lcd_spi_154.h
+        User/Key/Inc/key.h
+        User/Key/Src/key.c
+        User/74hc165d/Inc/74hc165d.h
+        User/74hc165d/Src/74hc165d.c
+        User/Epd/Inc/epd.h
+        User/Epd/Src/epd.c
+        User/W2812/Inc/ws2812.h
+        User/W2812/Src/ws2812.c
+
+)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
@@ -81,6 +71,11 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
         Drivers/User/Inc
+        User/74hc165d/Inc
+        User/Epd/Inc
+        User/Key/Inc
+        User/Lcd/Inc
+        User/W2812/Inc
 )
 
 # Add project symbols (macros)

@@ -3,7 +3,6 @@
 //
 
 #include "ws2812.h"
-#include "ws2812.h"
 #define Led_Pin P14
 
 void WS2812_SendData(unsigned char R,unsigned char G,unsigned char B)

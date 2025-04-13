@@ -223,7 +223,7 @@
              (++) When both prescalers are used, it is recommended to configure the
                  asynchronous prescaler to a high value to minimize power consumption.
          (#) All RTC registers are Write protected. Writing to the RTC registers
-             is enabled by writing a key into the Write Protection register, RTC_WPR.
+             is enabled by writing a Key into the Write Protection register, RTC_WPR.
          (#) To configure the RTC Calendar, user application should enter
              initialization mode. In this mode, the calendar counter is stopped
              and its value can be updated. When the initialization sequence is

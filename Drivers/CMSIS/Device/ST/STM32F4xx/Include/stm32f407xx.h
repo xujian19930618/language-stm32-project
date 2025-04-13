@@ -456,8 +456,8 @@ typedef struct
 typedef struct
 {
   __IO uint32_t ACR;      /*!< FLASH access control register,   Address offset: 0x00 */
-  __IO uint32_t KEYR;     /*!< FLASH key register,              Address offset: 0x04 */
-  __IO uint32_t OPTKEYR;  /*!< FLASH option key register,       Address offset: 0x08 */
+  __IO uint32_t KEYR;     /*!< FLASH Key register,              Address offset: 0x04 */
+  __IO uint32_t OPTKEYR;  /*!< FLASH option Key register,       Address offset: 0x08 */
   __IO uint32_t SR;       /*!< FLASH status register,           Address offset: 0x0C */
   __IO uint32_t CR;       /*!< FLASH control register,          Address offset: 0x10 */
   __IO uint32_t OPTCR;    /*!< FLASH option control register ,  Address offset: 0x14 */

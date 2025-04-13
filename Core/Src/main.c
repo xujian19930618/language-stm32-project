@@ -30,10 +30,6 @@
 
 #include "usbd_hid.h"
 #include "74hc165d.h"
-// #include "epd.h"
-#include "EPD_4in2bc.h"
-#include "DEV_Config.h"
-#include "GUI_Paint.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -76,71 +72,6 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-int EPD_test(void)
-{
-    DEV_Module_Init();
-
-    EPD_4IN2BC_Init();
-    EPD_4IN2BC_Clear();
-    DEV_Delay_ms(500);
-
-    UBYTE *BlackImage, *RYImage; // Red or Yellow
-    UWORD Imagesize = ((EPD_4IN2BC_WIDTH % 8 == 0)? (EPD_4IN2BC_WIDTH / 8 ): (EPD_4IN2BC_WIDTH / 8 + 1)) * EPD_4IN2BC_HEIGHT;
-    if((BlackImage = (UBYTE *)malloc(Imagesize)) == NULL) {
-        return -1;
-    }
-    if((RYImage = (UBYTE *)malloc(Imagesize)) == NULL) {
-        return -1;
-    }
-    Paint_NewImage(BlackImage, EPD_4IN2BC_WIDTH, EPD_4IN2BC_HEIGHT, 270, WHITE);
-    Paint_NewImage(RYImage, EPD_4IN2BC_WIDTH, EPD_4IN2BC_HEIGHT, 270, WHITE);
-
-    //Select Image
-    Paint_SelectImage(BlackImage);
-    Paint_Clear(WHITE);
-    Paint_SelectImage(RYImage);
-    Paint_Clear(WHITE);
-
-    Paint_SelectImage(BlackImage);
-    Paint_Clear(WHITE);
-    Paint_DrawPoint(10, 80, BLACK, DOT_PIXEL_1X1, DOT_STYLE_DFT);
-    Paint_DrawPoint(10, 90, BLACK, DOT_PIXEL_2X2, DOT_STYLE_DFT);
-    Paint_DrawPoint(10, 100, BLACK, DOT_PIXEL_3X3, DOT_STYLE_DFT);
-    Paint_DrawPoint(10, 110, BLACK, DOT_PIXEL_3X3, DOT_STYLE_DFT);
-    Paint_DrawLine(20, 70, 70, 120, BLACK, DOT_PIXEL_1X1, LINE_STYLE_SOLID);
-    Paint_DrawLine(70, 70, 20, 120, BLACK, DOT_PIXEL_1X1, LINE_STYLE_SOLID);
-    Paint_DrawRectangle(20, 70, 70, 120, BLACK, DOT_PIXEL_1X1, DRAW_FILL_EMPTY);
-    Paint_DrawRectangle(80, 70, 130, 120, BLACK, DOT_PIXEL_1X1, DRAW_FILL_FULL);
-    Paint_DrawString_EN(10, 0, "waveshare", &Font16, BLACK, WHITE);
-    Paint_DrawString_CN(130, 20, "΢ѩ����", &Font24CN, WHITE, BLACK);
-    Paint_DrawNum(10, 50, 987654321, &Font16, WHITE, BLACK);
-
-    //2.Draw red image
-    Paint_SelectImage(RYImage);
-    Paint_Clear(WHITE);
-    Paint_DrawCircle(160, 95, 20, BLACK, DOT_PIXEL_1X1, DRAW_FILL_EMPTY);
-    Paint_DrawCircle(210, 95, 20, BLACK, DOT_PIXEL_1X1, DRAW_FILL_FULL);
-    Paint_DrawLine(85, 95, 125, 95, BLACK, DOT_PIXEL_1X1, LINE_STYLE_DOTTED);
-    Paint_DrawLine(105, 75, 105, 115, BLACK, DOT_PIXEL_1X1, LINE_STYLE_DOTTED);
-    Paint_DrawString_CN(130, 0,"���abc", &Font12CN, BLACK, WHITE);
-    Paint_DrawString_EN(10, 20, "hello world", &Font12, WHITE, BLACK);
-    Paint_DrawNum(10, 33, 123456789, &Font12, BLACK, WHITE);
-
-    EPD_4IN2BC_Display(BlackImage, RYImage);
-    DEV_Delay_ms(2000);
-
-    EPD_4IN2BC_Clear();
-
-    EPD_4IN2BC_Sleep();
-    free(BlackImage);
-    free(RYImage);
-    BlackImage = NULL;
-    RYImage = NULL;
-
-    DEV_Module_Exit();
-
-    return 0;
-}
 /* USER CODE END 0 */
 
 /**
@@ -180,7 +111,6 @@ int main(void)
   MX_USB_DEVICE_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-  EPD_test();
   // EPD_Display();
   // epd_send_command(0x10);
   // epd_send_data(0x01);
@@ -203,19 +133,19 @@ int main(void)
     //     k--;
     //   }
     // }
-    // if (KEY_Scan() && key == 0) {
-    //   key = 1;
+    // if (KEY_Scan() && Key == 0) {
+    //   Key = 1;
     //   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,GPIO_PIN_SET);
     //   SendKeyReport(0x04, 0x06);
-    // }else if (KEY_Scan() && key == 1) {
-    //   key = 0;
+    // }else if (KEY_Scan() && Key == 1) {
+    //   Key = 0;
     //   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,GPIO_PIN_RESET);
     //   SendKeyReport(0x04, 0x19);
     // }
     // if (KEY_Scan() ) {
     //
-    //   uint8_t key = 0x04 + 'C' - 'C';
-    //   SendKeyReport(0x00, key);
+    //   uint8_t Key = 0x04 + 'C' - 'C';
+    //   SendKeyReport(0x00, Key);
     // }
     // HAL_Delay(1000);
     // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);

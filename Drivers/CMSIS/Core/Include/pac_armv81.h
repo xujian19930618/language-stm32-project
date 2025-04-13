@@ -1,6 +1,6 @@
 /******************************************************************************
  * @file     pac_armv81.h
- * @brief    CMSIS PAC key functions for Armv8.1-M PAC extension
+ * @brief    CMSIS PAC Key functions for Armv8.1-M PAC extension
  * @version  V1.0.0
  * @date     23. March 2022
  ******************************************************************************/
@@ -43,9 +43,9 @@
 #if (defined (__ARM_FEATURE_PAUTH) && (__ARM_FEATURE_PAUTH == 1))
 
 /**
-  \brief   read the PAC key used for privileged mode
-  \details Reads the PAC key stored in the PAC_KEY_P registers.
-  \param [out]    pPacKey  128bit PAC key
+  \brief   read the PAC Key used for privileged mode
+  \details Reads the PAC Key stored in the PAC_KEY_P registers.
+  \param [out]    pPacKey  128bit PAC Key
  */
 __STATIC_FORCEINLINE void __get_PAC_KEY_P (uint32_t* pPacKey) {
   __ASM volatile (
@@ -62,9 +62,9 @@ __STATIC_FORCEINLINE void __get_PAC_KEY_P (uint32_t* pPacKey) {
 }
 
 /**
-  \brief   write the PAC key used for privileged mode
-  \details writes the given PAC key to the PAC_KEY_P registers.
-  \param [in]    pPacKey  128bit PAC key
+  \brief   write the PAC Key used for privileged mode
+  \details writes the given PAC Key to the PAC_KEY_P registers.
+  \param [in]    pPacKey  128bit PAC Key
  */
 __STATIC_FORCEINLINE void __set_PAC_KEY_P (uint32_t* pPacKey) {
   __ASM volatile (
@@ -81,9 +81,9 @@ __STATIC_FORCEINLINE void __set_PAC_KEY_P (uint32_t* pPacKey) {
 }
 
 /**
-  \brief   read the PAC key used for unprivileged mode
-  \details Reads the PAC key stored in the PAC_KEY_U registers.
-  \param [out]    pPacKey  128bit PAC key
+  \brief   read the PAC Key used for unprivileged mode
+  \details Reads the PAC Key stored in the PAC_KEY_U registers.
+  \param [out]    pPacKey  128bit PAC Key
  */
 __STATIC_FORCEINLINE void __get_PAC_KEY_U (uint32_t* pPacKey) {
   __ASM volatile (
@@ -100,9 +100,9 @@ __STATIC_FORCEINLINE void __get_PAC_KEY_U (uint32_t* pPacKey) {
 }
 
 /**
-  \brief   write the PAC key used for unprivileged mode
-  \details writes the given PAC key to the PAC_KEY_U registers.
-  \param [in]    pPacKey  128bit PAC key
+  \brief   write the PAC Key used for unprivileged mode
+  \details writes the given PAC Key to the PAC_KEY_U registers.
+  \param [in]    pPacKey  128bit PAC Key
  */
 __STATIC_FORCEINLINE void __set_PAC_KEY_U (uint32_t* pPacKey) {
   __ASM volatile (
@@ -121,9 +121,9 @@ __STATIC_FORCEINLINE void __set_PAC_KEY_U (uint32_t* pPacKey) {
 #if (defined (__ARM_FEATURE_CMSE ) && (__ARM_FEATURE_CMSE == 3))
 
 /**
-  \brief   read the PAC key used for privileged mode (non-secure)
-  \details Reads the PAC key stored in the non-secure PAC_KEY_P registers when in secure mode.
-  \param [out]    pPacKey  128bit PAC key
+  \brief   read the PAC Key used for privileged mode (non-secure)
+  \details Reads the PAC Key stored in the non-secure PAC_KEY_P registers when in secure mode.
+  \param [out]    pPacKey  128bit PAC Key
  */
 __STATIC_FORCEINLINE void __TZ_get_PAC_KEY_P_NS (uint32_t* pPacKey) {
   __ASM volatile (
@@ -140,9 +140,9 @@ __STATIC_FORCEINLINE void __TZ_get_PAC_KEY_P_NS (uint32_t* pPacKey) {
 }
 
 /**
-  \brief   write the PAC key used for privileged mode (non-secure)
-  \details writes the given PAC key to the non-secure PAC_KEY_P registers when in secure mode.
-  \param [in]    pPacKey  128bit PAC key
+  \brief   write the PAC Key used for privileged mode (non-secure)
+  \details writes the given PAC Key to the non-secure PAC_KEY_P registers when in secure mode.
+  \param [in]    pPacKey  128bit PAC Key
  */
 __STATIC_FORCEINLINE void __TZ_set_PAC_KEY_P_NS (uint32_t* pPacKey) {
   __ASM volatile (
@@ -159,9 +159,9 @@ __STATIC_FORCEINLINE void __TZ_set_PAC_KEY_P_NS (uint32_t* pPacKey) {
 }
 
 /**
-  \brief   read the PAC key used for unprivileged mode (non-secure)
-  \details Reads the PAC key stored in the non-secure PAC_KEY_U registers when in secure mode.
-  \param [out]    pPacKey  128bit PAC key
+  \brief   read the PAC Key used for unprivileged mode (non-secure)
+  \details Reads the PAC Key stored in the non-secure PAC_KEY_U registers when in secure mode.
+  \param [out]    pPacKey  128bit PAC Key
  */
 __STATIC_FORCEINLINE void __TZ_get_PAC_KEY_U_NS (uint32_t* pPacKey) {
   __ASM volatile (
@@ -178,9 +178,9 @@ __STATIC_FORCEINLINE void __TZ_get_PAC_KEY_U_NS (uint32_t* pPacKey) {
 }
 
 /**
-  \brief   write the PAC key used for unprivileged mode (non-secure)
-  \details writes the given PAC key to the non-secure PAC_KEY_U registers when in secure mode.
-  \param [in]    pPacKey  128bit PAC key
+  \brief   write the PAC Key used for unprivileged mode (non-secure)
+  \details writes the given PAC Key to the non-secure PAC_KEY_U registers when in secure mode.
+  \param [in]    pPacKey  128bit PAC Key
  */
 __STATIC_FORCEINLINE void __TZ_set_PAC_KEY_U_NS (uint32_t* pPacKey) {
   __ASM volatile (
