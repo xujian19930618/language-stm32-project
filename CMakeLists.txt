@@ -54,7 +54,37 @@ add_executable(${CMAKE_PROJECT_NAME}
         User/Device/Led/Inc/led.h
         User/Device/Led/Src/led.c
         User/Stm32/Usb/Inc/usb.h
-        User/Stm32/Usb/Src/usb.h
+        User/Device/Sdio/Inc/sdio.h
+        User/Device/Sdio/Src/sdio.c
+        User/Stm32/Usart/Inc/usart.h
+        User/Stm32/Spi/Inc/spi.h
+        User/Stm32/Pwr/Inc/pwr.h
+        User/Stm32/Pwm/Inc/pwm.h
+        User/Stm32/Interrupt/Inc/interrupt.h
+        User/Stm32/I2C/Inc/i2c.h
+        User/Stm32/GPIO/Inc/gpio.h
+        User/Stm32/Fsmc/Inc/fsmc.h
+        User/Stm32/Exti/Inc/exti.h
+        User/Stm32/Dma/Inc/dma.h
+        User/Stm32/Dac/Inc/dac.h
+        User/Stm32/Can/Inc/can.h
+        User/Stm32/Adc/Inc/adc.h
+        User/Stm32/Adc/Src/adc.c
+        User/Stm32/Can/Src/can.c
+        User/Stm32/Dac/Src/dac.c
+        User/Stm32/Dma/Src/dma.c
+        User/Stm32/Exti/Src/exti.c
+        User/Stm32/Fsmc/Src/fsmc.c
+        User/Stm32/GPIO/Src/gpio.c
+        User/Stm32/I2C/Src/i2c.c
+        User/Stm32/Interrupt/Src/interrupt.c
+        User/Stm32/Pwm/Src/pwm.c
+        User/Stm32/Pwr/Src/pwr.c
+        User/Stm32/Spi/Src/spi.c
+        User/Stm32/Usart/Src/usart.c
+        User/Stm32/Usb/Src/usb.c
+        User/Stm32/wwdg/Src/wwdg.c
+        User/Stm32/wwdg/Inc/wwdg.h
 
 )
 
