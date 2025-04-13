@@ -36,21 +36,25 @@ enable_language(C ASM)
 
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME}
-        User/Lcd/Inc/lcd.h
-        User/Lcd/Src/lcd.c
-        User/Lcd/Inc/lcd_image.h
-        User/Lcd/Src/lcd_image.c
-        User/Lcd/Inc/lcd_fonts.h
-        User/Lcd/Src/lcd_fonts.c
-        User/Lcd/Inc/lcd_spi_154.h
-        User/Key/Inc/key.h
-        User/Key/Src/key.c
-        User/74hc165d/Inc/74hc165d.h
-        User/74hc165d/Src/74hc165d.c
-        User/Epd/Inc/epd.h
-        User/Epd/Src/epd.c
-        User/W2812/Inc/ws2812.h
-        User/W2812/Src/ws2812.c
+        User/Device/Lcd/Inc/lcd.h
+        User/Device/Lcd/Src/lcd.c
+        User/Device/Lcd/Inc/lcd_image.h
+        User/Device/Lcd/Src/lcd_image.c
+        User/Device/Lcd/Inc/lcd_fonts.h
+        User/Device/Lcd/Src/lcd_fonts.c
+        User/Device/Lcd/Inc/lcd_spi_154.h
+        User/Device/Key/Inc/key.h
+        User/Device/Key/Src/key.c
+        User/Device/74hc165d/Inc/74hc165d.h
+        User/Device/74hc165d/Src/74hc165d.c
+        User/Device/Epd/Inc/epd.h
+        User/Device/Epd/Src/epd.c
+        User/Device/W2812/Inc/ws2812.h
+        User/Device/W2812/Src/ws2812.c
+        User/Device/Led/Inc/led.h
+        User/Device/Led/Src/led.c
+        User/Stm32/Usb/Inc/usb.h
+        User/Stm32/Usb/Src/usb.h
 
 )
 
@@ -71,11 +75,11 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
         Drivers/User/Inc
-        User/74hc165d/Inc
-        User/Epd/Inc
-        User/Key/Inc
-        User/Lcd/Inc
-        User/W2812/Inc
+        User/Device/74hc165d/Inc
+        User/Device/Epd/Inc
+        User/Device/Key/Inc
+        User/Device/Lcd/Inc
+        User/Device/W2812/Inc
 )
 
 # Add project symbols (macros)
