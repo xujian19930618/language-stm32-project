@@ -47,6 +47,20 @@ add_executable(${CMAKE_PROJECT_NAME}
         Drivers/User/Src/key.c
         Drivers/User/Inc/74hc165d.h
         Drivers/User/Src/74hc165d.c
+        Drivers/User/Inc/DEV_Config.h
+        Drivers/User/Src/DEV_Config.c
+        Drivers/User/Inc/EPD_4in2bc.h
+        Drivers/User/Src/EPD_4in2bc.c
+        Drivers/User/Inc/fonts.h
+        Drivers/User/Src/font8.c
+        Drivers/User/Src/font12.c
+        Drivers/User/Src/font12CN.c
+        Drivers/User/Src/font16.c
+        Drivers/User/Src/font24.c
+        Drivers/User/Src/font24CN.c
+        Drivers/User/Src/font20.c
+        Drivers/User/Inc/GUI_Paint.h
+        Drivers/User/Src/GUI_Paint.c
         Drivers/User/Inc/epd.h
         Drivers/User/Src/epd.c)
 

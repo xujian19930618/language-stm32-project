@@ -6,6 +6,7 @@
 
 #include <spi.h>
 
+
 void epd_reset(void) {
     _EPD_RST_SET;
     HAL_Delay(100);
@@ -25,15 +26,18 @@ void epd_read_busy(void) {
 }
 
 void epd_send_command(uint8_t command) {
+
     HAL_GPIO_WritePin(EPD_DC_PORT, EPD_DC_PIN, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(EPD_NSS_PORT, EPD_NSS_PIN, GPIO_PIN_RESET);
     HAL_SPI_Transmit(&hspi2, &command, 1, HAL_MAX_DELAY);
-    HAL_GPIO_WritePin(EPD_DC_PORT, EPD_DC_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(EPD_NSS_PORT, EPD_NSS_PIN, GPIO_PIN_SET);
 }
 
 void epd_send_data(uint8_t data) {
     HAL_GPIO_WritePin(EPD_DC_PORT, EPD_DC_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(EPD_NSS_PORT, EPD_NSS_PIN, GPIO_PIN_RESET);
     HAL_SPI_Transmit(&hspi2, &data, 1, HAL_MAX_DELAY);
-    HAL_GPIO_WritePin(EPD_DC_PORT, EPD_DC_PIN, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(EPD_NSS_PORT, EPD_NSS_PIN, GPIO_PIN_SET);
 }
 
 void epd_address_set(uint16_t x, uint16_t y, uint16_t w, uint16_t h) {
@@ -1020,20 +1024,60 @@ void EPD_Update(void) {
 }
 
 void epd_init(void) {
-    epd_reset();
-    epd_read_busy();
-    epd_send_command(0x12);
-    epd_read_busy();
-    epd_send_command(0x21);
-    epd_send_data(0x40);
-    epd_send_data(0x00);
-    epd_send_command(0x3C);
-    epd_send_data(0x05);
-    epd_send_command(0x11);
-    epd_send_data(0x03);
-    epd_address_set(0, 0,EPD_WIDTH - 1,EPD_HEIGHT - 1);
+    HAL_GPIO_WritePin(EPD_DC_PORT, EPD_DC_PIN, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(EPD_NSS_PORT, EPD_NSS_PIN, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(EPD_MOSI_PORT, EPD_MOSI_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(EPD_RES_PORT, EPD_RES_PIN, GPIO_PIN_SET);
 
-    EPD_SetCursor(0, 0);
+    epd_reset();
+
+    epd_send_command(0x06);
+    epd_send_data(0x17);
+    epd_send_data(0x17);
+    epd_send_data(0x17);
+    epd_send_command(0x04);
+
     epd_read_busy();
+    epd_send_command(0x00);
+    epd_send_data(0x0F);
+
+    uint16_t Width, Height;
+    Width = (EPD_WIDTH % 8 == 0)? (EPD_WIDTH / 8 ): (EPD_WIDTH / 8 + 1);
+    Height = EPD_HEIGHT;
+
+    epd_send_command(0x10);
+    for (uint16_t j = 0; j < Height; j++) {
+        for (uint16_t i = 0; i < Width; i++) {
+            epd_send_data(0x00);
+        }
+    }
+
+    epd_send_command(0x13);
+    for (uint16_t j = 0; j < Height; j++) {
+        for (uint16_t i = 0; i < Width; i++) {
+            epd_send_data(0x00);
+        }
+    }
+    epd_send_command(0x12); // DISPLAY_REFRESH
+    HAL_Delay(100);
+    epd_read_busy();
+
+
+    
+
+    // epd_read_busy();
+    // epd_send_command(0x12);
+    // epd_read_busy();
+    // epd_send_command(0x21);
+    // epd_send_data(0x40);
+    // epd_send_data(0x00);
+    // epd_send_command(0x3C);
+    // epd_send_data(0x05);
+    // epd_send_command(0x11);
+    // epd_send_data(0x03);
+    // epd_address_set(0, 0,EPD_WIDTH - 1,EPD_HEIGHT - 1);
+    //
+    // EPD_SetCursor(0, 0);
+    // epd_read_busy();
 
 }
