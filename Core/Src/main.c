@@ -113,6 +113,11 @@ int main(void)
   MX_USB_DEVICE_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
+  epd_init();
+  EPD_Display();
+  epd_send_command(0x10);
+  epd_send_data(0x01);
+  HAL_Delay(1000);
   /* USER CODE END 2 */
 
   /* Infinite loop */

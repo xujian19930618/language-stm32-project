@@ -10,7 +10,7 @@ void epd_reset(void) {
     _EPD_RST_SET;
     HAL_Delay(100);
     _EPD_RST_RESET;
-    HAL_Delay(100);
+    HAL_Delay(10);
     _EPD_RST_SET;
     HAL_Delay(100);
 }
@@ -1035,4 +1035,5 @@ void epd_init(void) {
 
     EPD_SetCursor(0, 0);
     epd_read_busy();
+
 }

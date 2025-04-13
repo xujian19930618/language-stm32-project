@@ -10,6 +10,16 @@
 #define EPD_WIDTH 400
 #define EPD_HEIGHT 300
 
+
+#define EPD_BUSY_PORT  GPIOB
+#define EPD_BUSY_PIN   GPIO_PIN_11
+
+#define EPD_RES_PORT  GPIOB                 // RES  复位
+#define EPD_RES_PIN   GPIO_PIN_14            // RES  复位
+
+
+#define EPD_DC_PORT  GPIOB                  // DC
+#define EPD_DC_PIN   GPIO_PIN_13            // DC
 // 四线SPI
 /**
  * MOSI: 主机发送从机接收   SDA: 设备接收数据
@@ -20,27 +30,26 @@
  *                       RES#: 复位
  *                       BS1:
  */
-#define EPD_MOSI_PORT  GPIOC                // SDA
-#define EPD_MOSI_PIN   GPIO_PIN_3           // SDA
 
-#define EPD_SCK_PORT  GPIOB                 // SCL
-#define EPD_SCK_PIN   GPIO_PIN_10            // SCL
 
 #define EPD_NSS_PORT  GPIOB                 // CS#
 #define EPD_NSS_PIN   GPIO_PIN_12            // CS#
 
 
-#define EPD_DC_PORT  GPIOB                  // DC
-#define EPD_DC_PIN   GPIO_PIN_13            // DC
+#define EPD_SCK_PORT  GPIOB                 // SCL
+#define EPD_SCK_PIN   GPIO_PIN_10            // SCL
+
+
+#define EPD_MOSI_PORT  GPIOC                // SDA
+#define EPD_MOSI_PIN   GPIO_PIN_3           // SDA
+
+
+
 
 // #define EPD_BS1_PORT  GPIOE                 // BS1
 // #define EPD_BS1_PIN   GPIO_PIN_8            // BS1
 
-#define EPD_RES_PORT  GPIOB                 // RES  复位
-#define EPD_RES_PIN   GPIO_PIN_14            // RES  复位
 
-#define EPD_BUSY_PORT  GPIOB
-#define EPD_BUSY_PIN   GPIO_PIN_11
 
 // void EPD_ReadBusy(void);
 // void EPD_RESET(void);
