@@ -80,6 +80,7 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
     uint8_t arr[8] = {0x04, 0x05, 0x06, 0x07, 0x08, 0x09,0x10, 0x16};
@@ -104,10 +105,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  // MX_USART1_UART_Init();
-  // MX_SPI3_Init();
-  // MX_RTC_Init();
-  // MX_SDIO_SD_Init();
+  MX_USART1_UART_Init();
+  MX_SPI3_Init();
+  MX_RTC_Init();
+  MX_SDIO_SD_Init();
   MX_USB_DEVICE_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */

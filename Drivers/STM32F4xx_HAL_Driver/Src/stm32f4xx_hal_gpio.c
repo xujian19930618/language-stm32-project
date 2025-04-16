@@ -462,7 +462,7 @@ HAL_StatusTypeDef HAL_GPIO_LockPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
   /* Check the parameters */
   assert_param(IS_GPIO_PIN(GPIO_Pin));
 
-  /* Apply lock Key write sequence */
+  /* Apply lock key write sequence */
   tmp |= GPIO_Pin;
   /* Set LCKx bit(s): LCKK='1' + LCK[15-0] */
   GPIOx->LCKR = tmp;
@@ -470,7 +470,7 @@ HAL_StatusTypeDef HAL_GPIO_LockPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
   GPIOx->LCKR = GPIO_Pin;
   /* Set LCKx bit(s): LCKK='1' + LCK[15-0] */
   GPIOx->LCKR = tmp;
-  /* Read LCKR register. This read is mandatory to complete Key lock sequence */
+  /* Read LCKR register. This read is mandatory to complete key lock sequence */
   tmp = GPIOx->LCKR;
 
   /* Read again in order to confirm lock is active */

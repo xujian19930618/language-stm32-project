@@ -80,7 +80,7 @@
 
       (+) The backup SRAM is not mass erased by a tamper event. It is read 
           protected to prevent confidential data, such as cryptographic private 
-          Key, from being accessed. The backup SRAM can be erased only through
+          key, from being accessed. The backup SRAM can be erased only through 
           the Flash interface when a protection level change from level 1 to 
           level 0 is requested. 
       -@- Refer to the description of Read protection (RDP) in the Flash 
