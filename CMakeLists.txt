@@ -110,6 +110,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         User/Device/Key/Inc
         User/Device/Lcd/Inc
         User/Device/W2812/Inc
+        User/Stm32/Usb/Inc
 )
 
 # Add project symbols (macros)
