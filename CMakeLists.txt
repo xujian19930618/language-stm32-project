@@ -47,8 +47,6 @@ add_executable(${CMAKE_PROJECT_NAME}
         User/Device/Key/Src/key.c
         User/Device/74hc165d/Inc/74hc165d.h
         User/Device/74hc165d/Src/74hc165d.c
-        User/Device/Epd/Inc/epd.h
-        User/Device/Epd/Src/epd.c
         User/Device/W2812/Inc/ws2812.h
         User/Device/W2812/Src/ws2812.c
         User/Device/Led/Inc/led.h
@@ -85,6 +83,14 @@ add_executable(${CMAKE_PROJECT_NAME}
         User/Stm32/Usb/Src/usb.c
         User/Stm32/wwdg/Src/wwdg.c
         User/Stm32/wwdg/Inc/wwdg.h
+        User/Device/Epd/Inc/EPD_font.h
+        User/Device/Epd/Src/EPD_GUI.c
+        User/Device/Epd/Inc/EPD_GUI.h
+        User/Device/Epd/Src/EPD_SPI.c
+        User/Device/Epd/Inc/EPD_SPI.h
+        User/Device/Epd/Src/EPD.c
+        User/Device/Epd/Inc/EPD.h
+        User/Device/Epd/Inc/Pic.h
 
 )
 
