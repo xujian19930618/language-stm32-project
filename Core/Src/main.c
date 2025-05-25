@@ -98,8 +98,8 @@ int main(void)
 
   /* USER CODE END SysInit */
 
-    /* Initialize all configured peripherals */
-    MX_GPIO_Init();
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
     // MX_USART1_UART_Init();
     // MX_SPI3_Init();
     // MX_RTC_Init();
@@ -109,16 +109,33 @@ int main(void)
     /* USER CODE BEGIN 2 */
 
     /* USER CODE END 2 */
+    // MX_USB_DEVICE_Init();
+  MX_SPI2_Init();
+  /* USER CODE BEGIN 2 */
+    // float num = 12.05;
+    // EPD_GPIOInit();
+    // EPD_Init();
+    // EPD_Display(gImage_3);
+    // EPD_Sleep();
+    // EPD_Init_Fast(Fast_Seconds_1_s);
+    // EPD_Display_Fast(gImage_1);
+    // EPD_Sleep();
+    // HAL_Delay(1000);
+    // EPD_Clear();
+    // Paint_NewImage(Image_BW,EPD_W,EPD_H, 0,WHITE);
+    // EPD_Full(WHITE); //清空画布
+    // EPD_Display_Part(0, 0,EPD_W,EPD_H, Image_BW);
+  /* USER CODE END 2 */
 
-    /* Infinite loop */
-    /* USER CODE BEGIN WHILE */
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
     while (1) {
 
         /* USER CODE END WHILE */
 
-        /* USER CODE BEGIN 3 */
+    /* USER CODE BEGIN 3 */
     }
-    /* USER CODE END 3 */
+  /* USER CODE END 3 */
 }
 
 /**
