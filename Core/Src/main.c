@@ -97,10 +97,10 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   MX_SPI3_Init();
-  // MX_RTC_Init();
-  // MX_SDIO_SD_Init();
-  // MX_USB_DEVICE_Init();
-  // MX_SPI2_Init();
+  MX_RTC_Init();
+  MX_SDIO_SD_Init();
+  MX_USB_DEVICE_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   // HAL_UART_Receive_IT(&huart1, da)
 
@@ -109,8 +109,8 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
     while (1) {
-      // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-      // HAL_Delay(1000);
+      HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+      HAL_Delay(1000);
 
     /* USER CODE END WHILE */
 
