@@ -22,7 +22,7 @@
 #define	Direction_H             0					// LCD横屏显示
 #define	Direction_H_Flip        1					// LCD横屏显示,上下翻转
 #define	Direction_V             2					// LCD竖屏显示
-#define	Direction_V_Flip        3					/ /LCD竖屏显示,上下翻转
+#define	Direction_V_Flip        3					// LCD竖屏显示,上下翻转
 
 // 设置变量显示时多余位补0还是补空格
 // 只有 LCD_DisplayNumber() 显示整数 和 LCD_DisplayDecimals()显示小数 这两个函数用到

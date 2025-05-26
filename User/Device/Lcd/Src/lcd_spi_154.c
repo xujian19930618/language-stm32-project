@@ -3,6 +3,7 @@
 //
 
 #include "lcd_spi_154.h"
+#include <stdio.h>
 
 SPI_HandleTypeDef hspi3;			// SPI_HandleTypeDef 结构体变量
 

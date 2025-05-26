@@ -42,7 +42,8 @@ add_executable(${CMAKE_PROJECT_NAME}
         User/Device/Lcd/Src/lcd_image.c
         User/Device/Lcd/Inc/lcd_fonts.h
         User/Device/Lcd/Src/lcd_fonts.c
-        User/Device/Lcd/Inc/lcd_spi_154.h
+#        User/Device/Lcd/Inc/lcd_spi_154.h
+#        User/Device/Lcd/Src/lcd_spi_154.c
         User/Device/Key/Inc/key.h
         User/Device/Key/Src/key.c
         User/Device/74hc165d/Inc/74hc165d.h
@@ -91,6 +92,10 @@ add_executable(${CMAKE_PROJECT_NAME}
         User/Device/Epd/Src/EPD.c
         User/Device/Epd/Inc/EPD.h
         User/Device/Epd/Inc/Pic.h
+        User/Device/St7789/Inc/st7789.h
+        User/Device/St7789/Src/st7789.c
+        User/Device/St7789/Inc/fonts.h
+        User/Device/St7789/Src/fonts.c
 
 )
 
@@ -117,6 +122,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         User/Device/Lcd/Inc
         User/Device/W2812/Inc
         User/Stm32/Usb/Inc
+        User/Device/St7789/Inc
 )
 
 # Add project symbols (macros)
