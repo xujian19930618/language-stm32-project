@@ -18,13 +18,13 @@ extern SPI_HandleTypeDef hspi3;
 void LCD_WriteCommand(uint8_t lcd_command) {
     while ((hspi3.Instance->SR & 0x0080) != RESET);     // 先判断SPI是否空闲，等待通信完成
 
-    LCD_DC_Command;                                     //	DC引脚输出低，代表写指令
+    HAL_GPIO_WritePin(LCD_DC_PORT, LCD_DC_PIN, GPIO_PIN_RESET);     //	DC引脚输出低，代表写指令
 
     (&hspi3)->Instance->DR = lcd_command;               // 发送数据
     while ((hspi3.Instance->SR & 0x0002) == 0);         // 等待发送缓冲区清空
     while ((hspi3.Instance->SR & 0x0080) != RESET);     //	等待通信完成
 
-    LCD_DC_Data;                                        //	DC引脚输出高，代表写数据
+    HAL_GPIO_WritePin(LCD_DC_PORT, LCD_DC_PIN, GPIO_PIN_SET);       //	DC引脚输出高，代表写数据
 }
 
 /****************************************************************************************************************************************
@@ -58,14 +58,14 @@ void LCD_WriteData_16bit(uint16_t lcd_data) {
 }
 
 void SPI_LCD_Init(void) {
-    LCD_DC_Data;                // DC引脚拉高，默认处于写数据状态
-    LCD_CS_H;                   // 拉高片选，禁止通信
-    LCD_Backlight_OFF;          // 先关闭背光，初始化完成之后再打开
+    HAL_GPIO_WritePin(LCD_DC_PORT, LCD_DC_PIN, GPIO_PIN_SET);                // DC引脚拉高，默认处于写数据状态
+    HAL_GPIO_WritePin(LCD_CS_PORT, LCD_CS_PIN, GPIO_PIN_SET);;                   // 拉高片选，禁止通信
+    HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_RESET);          // 先关闭背光，初始化完成之后再打开
 
 
     HAL_Delay(10);              // 屏幕刚完成复位时（包括上电复位），需要等待5ms才能发送指令
 
-    LCD_CS_L;                   // 片选拉低，使能IC，开始通信
+    HAL_GPIO_WritePin(LCD_CS_PORT, LCD_CS_PIN, GPIO_PIN_RESET);;                   // 片选拉低，使能IC，开始通信
 
     LCD_WriteCommand(0x36);     // 显存访问控制 指令，用于设置访问显存的方式
     LCD_WriteData_8bit(0x00);   // 配置成 从上到下、从左到右，RGB像素格式
@@ -149,7 +149,7 @@ void SPI_LCD_Init(void) {
 
     while ((hspi3.Instance->SR & 0x0080) != RESET) {}
     //	等待通信完成
-    LCD_CS_H; // 片选拉高
+    HAL_GPIO_WritePin(LCD_CS_PORT, LCD_CS_PIN, GPIO_PIN_SET);; // 片选拉高
 
     // 以下进行一些驱动的默认设置
     // LCD_SetBackColor(LCD_BLACK); // 设置背景色
@@ -160,5 +160,5 @@ void SPI_LCD_Init(void) {
     // LCD_ShowNumMode(Fill_Zero); // 设置变量显示模式，多余位填充空格还是填充0
 
     // 全部设置完毕之后，打开背光
-    LCD_Backlight_ON; // 引脚输出高电平点亮背光
+    HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_SET); // 引脚输出高电平点亮背光
 }

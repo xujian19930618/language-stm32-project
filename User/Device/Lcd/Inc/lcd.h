@@ -112,14 +112,16 @@ void LCD_ClearRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height); // 
 /*--------------------------------------------------------- 控制宏 ---------------------------------------------------*/
 
 // 因为片选引脚需要频繁操作，使用寄存器效率会高些
-#define 	LCD_CS_H    		 	LCD_CS_PORT->BSRR  = LCD_CS_PIN							// 片选拉高
-#define 	LCD_CS_L     			LCD_CS_PORT->BSRR  = (uint32_t)LCD_CS_PIN << 16U	// 片选拉低
+// #define 	LCD_CS_H    		 	LCD_CS_PORT->BSRR  = LCD_CS_PIN							// 片选拉高
+// #define 	LCD_CS_L     			LCD_CS_PORT->BSRR  = (uint32_t)LCD_CS_PIN << 16U	// 片选拉低
+// HAL_GPIO_WritePin(LCD_CS_PORT, LCD_CS_PIN, GPIO_PIN_SET);
+// HAL_GPIO_WritePin(LCD_CS_PORT, LCD_CS_PIN, GPIO_PIN_RESET);
 
-#define	    LCD_DC_Command          HAL_GPIO_WritePin(LCD_DC_PORT, LCD_DC_PIN, GPIO_PIN_RESET)	  		// 低电平，指令传输
-#define 	LCD_DC_Data             HAL_GPIO_WritePin(LCD_DC_PORT, LCD_DC_PIN, GPIO_PIN_SET)				// 高电平，数据传输
-
-#define 	LCD_Backlight_ON        HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_SET)		// 高电平，开启背光
-#define 	LCD_Backlight_OFF       HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_RESET)	// 低电平，关闭背光
+// #define	    LCD_DC_Command          HAL_GPIO_WritePin(LCD_DC_PORT, LCD_DC_PIN, GPIO_PIN_RESET)	  		// 低电平，指令传输
+// #define 	LCD_DC_Data             HAL_GPIO_WritePin(LCD_DC_PORT, LCD_DC_PIN, GPIO_PIN_SET)				// 高电平，数据传输
+//
+// #define 	LCD_Backlight_ON        HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_SET)		// 高电平，开启背光
+// #define 	LCD_Backlight_OFF       HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_RESET)	// 低电平，关闭背光
 
 
 #endif //LED_H
