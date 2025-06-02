@@ -100,7 +100,6 @@ int main(void)
   MX_RTC_Init();
   // MX_SDIO_SD_Init();
   MX_USB_DEVICE_Init();
-  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   // HAL_UART_Receive_IT(&huart1, da)
 
