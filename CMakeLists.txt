@@ -96,6 +96,7 @@ add_executable(${CMAKE_PROJECT_NAME}
         User/Device/St7789/Src/st7789.c
         User/Device/St7789/Inc/fonts.h
         User/Device/St7789/Src/fonts.c
+        User/Device/Key/Inc/keyX.h
 
 )
 
@@ -105,6 +106,7 @@ add_subdirectory(cmake/stm32cubemx)
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined library search paths
+
 )
 
 # Add sources to executable
@@ -121,8 +123,9 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         User/Device/Key/Inc
         User/Device/Lcd/Inc
         User/Device/W2812/Inc
-        User/Stm32/Usb/Inc
+        User/Device/Key/Inc
         User/Device/St7789/Inc
+        User/Stm32/Usb/Inc
 )
 
 # Add project symbols (macros)
