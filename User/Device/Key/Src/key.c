@@ -24,12 +24,10 @@ uint8_t KEY_Scan(void)
             HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
         }
     }
+    return 1;
 }
 
-void SendKeyReport(uint8_t fn, uint8_t key)
-{
 
-}
 void KEY_Click_Listener()
 {
 

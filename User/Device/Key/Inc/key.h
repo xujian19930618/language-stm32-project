@@ -8,7 +8,6 @@
 
 uint8_t KEY_Scan(void);
 
-void SendKeyReport(uint8_t fn, uint8_t key);
 void KEY_Click_Listener();
 
 #endif //KEY_H
