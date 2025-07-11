@@ -118,8 +118,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
         Drivers/User/Inc
-#        User/Device/Inc
-#        User/Stm32/Inc
+        User/Device/Inc
+        User/Stm32/Inc
 )
 
 # Add project symbols (macros)
