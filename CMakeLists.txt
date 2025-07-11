@@ -122,6 +122,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         User/Device/Epd/Inc
         User/Device/Key/Inc
         User/Device/Lcd/Inc
+        User/Device/Led/Inc
         User/Device/W2812/Inc
         User/Device/Key/Inc
         User/Device/St7789/Inc
