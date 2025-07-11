@@ -108,7 +108,8 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
     while (1) {
-      HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+      // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+      HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
       HAL_Delay(1000);
 
     /* USER CODE END WHILE */
