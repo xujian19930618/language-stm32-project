@@ -2,8 +2,8 @@
 // Created by 徐剑 on 25-4-13.
 //
 
-#ifndef USART_H
-#define USART_H
+#ifndef STM32_USART_H
+#define STM32_USART_H
 
 #include "main.h"
 
@@ -25,4 +25,4 @@ void send_uart_data(uint8_t );
 
 
 
-#endif //USART_H
+#endif //STM32_USART_H

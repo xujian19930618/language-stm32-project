@@ -2,7 +2,7 @@
 // Created by 徐剑 on 25-4-13.
 //
 
-#include "usb.h"
+#include "stm32_usb.h"
 
 void SendKeyReport(uint8_t fn,uint8_t key) {
     uint8_t report[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
