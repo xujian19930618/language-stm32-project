@@ -29,6 +29,7 @@
 /* USER CODE BEGIN Includes */
 
 #include "usbd_hid.h"
+// #include "stm32_usart.h"
 
 /* USER CODE END Includes */
 
@@ -110,6 +111,7 @@ int main(void)
     while (1) {
       // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
       HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+      // send_uart_data();
       HAL_Delay(1000);
 
     /* USER CODE END WHILE */

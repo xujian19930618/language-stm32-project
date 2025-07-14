@@ -36,6 +36,7 @@ enable_language(C ASM)
 
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME}
+        User/Stm32/Src/stm32_usart.c
 #        User/Device/Inc/lcd.h
 #        User/Device/Src/lcd.c
 #        User/Device/Inc/lcd_image.h
@@ -80,7 +81,6 @@ add_executable(${CMAKE_PROJECT_NAME}
 #        User/Stm32/Src/pwm.c
 #        User/Stm32/Src/pwr.c
 #        User/Stm32/Src/spi.c
-#        User/Stm32/Src/usart.c
 #        User/Stm32/Src/usb.c
 #        User/Stm32/Src/wwdg.c
 #        User/Stm32/Inc/wwdg.h
