@@ -20,8 +20,10 @@ extern UART_HandleTypeDef huart1;
 // 参数Timeout: 超时时间, 单位ms; HAL_MAX_DELAY: 无限期地等待下去, 直到发送完成为止
 // HAL_StatusTypeDef: HAL_OK: 成功; HAL_ERROR: 发送出错; HAL_BUSY: 串口忙; HAL_TIMEOUT: 发送超时
 
+// HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)
 
-void send_uart_data(uint8_t );
+
+void send_uart_data();
 
 
 
