@@ -40,3 +40,30 @@
 // for (volatile int i = 0; i < DELAY_400NS; i++);
 // HAL_Delay(500); // 延时500ms
 // KEY_Click_Listener();
+
+#include "ws2812.h"
+extern TIM_HandleTypeDef htim1;
+
+void WS2812_Send(void) {
+    // Fill reset slots (low signal)
+    for (int i = WS2812_PWM_BITS; i < WS2812_BUFFER_SIZE; i++) {
+        ws2812_pwm_data[i] = 0;
+    }
+
+    HAL_TIM_PWM_Start_DMA(&htim1, TIM_CHANNEL_1, ws2812_pwm_data, WS2812_BUFFER_SIZE);
+}
+
+void WS2812_SendData(uint8_t red, uint8_t green, uint8_t blue, int led_index) {
+    uint32_t color = ((uint32_t)green << 16) | ((uint32_t)red << 8) | blue;
+
+    for (int i = 0; i < 24; i++) {
+        if (color & (1 << (23 - i))) {
+            ws2812_pwm_data[led_index * 24 + i] = 19;  // 1 = 2/3 duty
+        } else {
+            ws2812_pwm_data[led_index * 24 + i] = 9;   // 0 = 1/3 duty
+        }
+    }
+}
+void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
+    HAL_TIM_PWM_Stop_DMA(htim, TIM_CHANNEL_1);
+}
