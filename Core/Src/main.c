@@ -111,8 +111,8 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
     while (1) {
-      // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-      HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+      HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+      // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
       // send_uart_data();
       HAL_Delay(1000);
 

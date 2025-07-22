@@ -5,4 +5,6 @@
 #ifndef STM32_INTERRUPT_H
 #define STM32_INTERRUPT_H
 
+#include "stm32f4xx_hal_def.h"
+
 #endif //STM32_INTERRUPT_H
