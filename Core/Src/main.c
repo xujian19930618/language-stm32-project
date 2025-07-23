@@ -18,10 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "dma.h"
 #include "rtc.h"
 #include "spi.h"
-#include "tim.h"
 #include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
@@ -65,6 +63,18 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 
+void SendKeyReport(uint8_t fn,uint8_t key) {
+  uint8_t report[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+  report[2] = key;  // 将按键码放入报告缓冲区
+
+  USBD_HID_SendReport(&hUsbDeviceFS, report, sizeof(report));
+  HAL_Delay(100);  // 延时以模拟按键按下
+
+  memset(report, 0, sizeof(report));  // 清空报告缓冲区以模拟按键释放
+  USBD_HID_SendReport(&hUsbDeviceFS, report, sizeof(report));
+  HAL_Delay(100);
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -97,12 +107,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_SPI3_Init();
   MX_RTC_Init();
   MX_USB_DEVICE_Init();
-  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   // HAL_UART_Receive_IT(&huart1, da)
 
@@ -114,6 +122,7 @@ int main(void)
       HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
       // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
       // send_uart_data();
+      SendKeyReport(8, 0x07 );
       HAL_Delay(1000);
 
     /* USER CODE END WHILE */
