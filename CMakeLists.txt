@@ -37,38 +37,16 @@ enable_language(C ASM)
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME}
         User/Stm32/Src/stm32_usart.c
-#        User/Device/Inc/lcd.h
+        User/Stm32/Src/stm32_i2c.c
 #        User/Device/Src/lcd.c
-#        User/Device/Inc/lcd_image.h
 #        User/Device/Src/lcd_image.c
-#        User/Device/Inc/lcd_fonts.h
 #        User/Device/Src/lcd_fonts.c
-#        User/Device/Lcd/Inc/lcd_spi_154.h
 #        User/Device/Lcd/Src/lcd_spi_154.c
-#        User/Device/Inc/key.h
 #        User/Device/Src/key.c
-#        User/Device/Inc/74hc165d.h
 #        User/Device/Src/74hc165d.c
-#        User/Device/Inc/ws2812.h
 #        User/Device/Src/ws2812.c
-#        User/Device/Inc/led.h
 #        User/Device/Src/led.c
-#        User/Stm32/Inc/usb.h
-#        User/Device/Inc/sdio.h
 #        User/Device/Src/sdio.c
-#        User/Stm32/Inc/usart.h
-#        User/Stm32/Inc/spi.h
-#        User/Stm32/Inc/pwr.h
-#        User/Stm32/Inc/pwm.h
-#        User/Stm32/Inc/interrupt.h
-#        User/Stm32/Inc/i2c.h
-#        User/Stm32/Inc/gpio.h
-#        User/Stm32/Inc/fsmc.h
-#        User/Stm32/Inc/exti.h
-#        User/Stm32/Inc/dma.h
-#        User/Stm32/Inc/dac.h
-#        User/Stm32/Inc/can.h
-#        User/Stm32/Inc/adc.h
 #        User/Stm32/Src/adc.c
 #        User/Stm32/Src/can.c
 #        User/Stm32/Src/dac.c
@@ -76,27 +54,17 @@ add_executable(${CMAKE_PROJECT_NAME}
 #        User/Stm32/Src/exti.c
 #        User/Stm32/Src/fsmc.c
 #        User/Stm32/Src/gpio.c
-#        User/Stm32/Src/i2c.c
 #        User/Stm32/Src/interrupt.c
 #        User/Stm32/Src/pwm.c
 #        User/Stm32/Src/pwr.c
 #        User/Stm32/Src/spi.c
 #        User/Stm32/Src/usb.c
 #        User/Stm32/Src/wwdg.c
-#        User/Stm32/Inc/wwdg.h
-#        User/Device/Inc/EPD_font.h
 #        User/Device/Src/EPD_GUI.c
-#        User/Device/Inc/EPD_GUI.h
 #        User/Device/Src/EPD_SPI.c
-#        User/Device/Inc/EPD_SPI.h
 #        User/Device/Src/EPD.c
-#        User/Device/Inc/EPD.h
-#        User/Device/Inc/Pic.h
-#        User/Device/Inc/st7789.h
 #        User/Device/Src/st7789.c
-#        User/Device/Inc/fonts.h
 #        User/Device/Src/fonts.c
-#        User/Device/Inc/keyX.h
 
 )
 
