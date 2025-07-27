@@ -88,6 +88,8 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         Drivers/User/Inc
         User/Device/Inc
         User/Stm32/Inc
+        User/LCD/Inc
+        User/EPD/Inc
 )
 
 # Add project symbols (macros)
