@@ -3,7 +3,7 @@
 //
 
 
-#include "../Inc/lcd_fonts.h"
+#include "../../Device/Inc/lcd_fonts.h"
 
 
 //		汉字字模数据，字体为1212

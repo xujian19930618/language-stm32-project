@@ -2,7 +2,7 @@
 // Created by 徐剑 on 25-3-23.
 //
 
-#include "../Inc/lcd.h"
+#include "../../Device/Inc/lcd.h"
 
 extern SPI_HandleTypeDef hspi3;
 
