@@ -2,7 +2,7 @@
 CAD.formats=[]
 CAD.pinconfig=Dual
 CAD.provider=
-FREERTOS.Events01=event,Static,eventControlBlock
+FREERTOS.Events01=
 FREERTOS.IPParameters=Tasks01,Events01
 FREERTOS.Tasks01=defaultTask,24,128,StartDefaultTask,Default,NULL,Dynamic,NULL,NULL
 File.Version=6
