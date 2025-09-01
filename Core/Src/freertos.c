@@ -29,6 +29,7 @@
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
+typedef StaticEventGroup_t osStaticEventGroupDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -53,6 +54,14 @@ const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for event */
+osEventFlagsId_t eventHandle;
+osStaticEventGroupDef_t eventControlBlock;
+const osEventFlagsAttr_t event_attributes = {
+  .name = "event",
+  .cb_mem = &eventControlBlock,
+  .cb_size = sizeof(eventControlBlock),
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -98,6 +107,10 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
+
+  /* Create the event(s) */
+  /* creation of event */
+  eventHandle = osEventFlagsNew(&event_attributes);
 
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
