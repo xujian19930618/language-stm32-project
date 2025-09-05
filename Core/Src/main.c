@@ -21,6 +21,7 @@
 #include "cmsis_os.h"
 #include "rtc.h"
 #include "spi.h"
+#include "tim.h"
 #include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
@@ -76,6 +77,13 @@ void SendKeyReport(uint8_t fn,uint8_t key) {
   USBD_HID_SendReport(&hUsbDeviceFS, report, sizeof(report));
   HAL_Delay(100);
 }
+// 设置油门
+void ESC_SetThrottle(uint16_t us)
+{
+  if(us < 1000) us = 1000;
+  if(us > 2000) us = 2000;
+  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, us);
+}
 
 /* USER CODE END 0 */
 
@@ -87,7 +95,6 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
 
   /* USER CODE END 1 */
 
@@ -112,17 +119,24 @@ int main(void)
   MX_USART1_UART_Init();
   MX_SPI3_Init();
   MX_RTC_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   // HAL_UART_Receive_IT(&huart1, da)
+  // HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+  // 上电时先设置油门最小，避免电机乱转
+  // ESC_SetThrottle(2000); // 全油门
+  // HAL_Delay(2000);
+  // ESC_SetThrottle(1100); // 最小油门
+  // HAL_Delay(2000);
 
   /* USER CODE END 2 */
 
   /* Init scheduler */
-  osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
-  MX_FREERTOS_Init();
+  // osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
+  // MX_FREERTOS_Init();
 
   /* Start scheduler */
-  osKernelStart();
+  // osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
 
@@ -132,9 +146,10 @@ int main(void)
       HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
       // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
       // send_uart_data();
-      SendKeyReport(8, 0x07 );
-      HAL_Delay(1000);
-
+      // SendKeyReport(8, 0x07 );
+      // HAL_Delay(1000);
+      // ESC_SetThrottle(1100); // 最小油门
+      // HAL_Delay(20);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
