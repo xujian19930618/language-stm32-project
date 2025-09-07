@@ -7,28 +7,24 @@
 
 #include "main.h"
 
-
-#define LCD_Width     240		// LCD的像素长度
-#define LCD_Height    240		// LCD的像素宽度
-
+#define     LCD_Width          240		                      // LCD的像素长度
+#define     LCD_Height         240		                      // LCD的像素宽度
 /*------------------------------------------------------  引脚配置 -------------------------------------------------*/
 
-#define     LCD_SCK_PIN      		GPIO_PIN_3                  // SCK引脚, 需要重定义SPI3的IO口复用
+#define     LCD_SCK_PIN        GPIO_PIN_3                  // SCK引脚, 需要重定义SPI3的IO口复用
 #define     LCD_SCK_PORT     		GPIOB                       // SCK引脚用到的端口
 
-#define     LCD_SDA_PIN             GPIO_PIN_5                  // SDA引脚, 需要重定义SPI3的IO口复用
-#define 	LCD_SDA_PORT            GPIOB                       // SDA引脚用到的端口
+#define     LCD_SDA_PIN        GPIO_PIN_5                  // SDA引脚, 需要重定义SPI3的IO口复用
+#define     LCD_SDA_PORT       GPIOB                       // SDA引脚用到的端口
 
+#define     LCD_CS_PIN       		GPIO_PIN_11                 // CS片选引脚,低电平有效
+#define     LCD_CS_PORT      		GPIOD                       // CS引脚用到的端口
 
-#define 	LCD_CS_PIN       		GPIO_PIN_11                 // CS片选引脚,低电平有效
-#define 	LCD_CS_PORT      		GPIOD                       // CS引脚用到的端口
-
-#define     LCD_DC_PIN				GPIO_PIN_12                 // 数据指令选择  引脚
-#define	    LCD_DC_PORT				GPIOD                       // 数据指令选择  GPIO端口
+#define     LCD_DC_PIN				     GPIO_PIN_12                 // 数据指令选择  引脚
+#define	    LCD_DC_PORT				    GPIOD                       // 数据指令选择  GPIO端口
 
 #define     LCD_Backlight_PIN		GPIO_PIN_13                 // 背光  引脚
-#define	    LCD_Backlight_PORT		GPIOD                       // 背光 GPIO端口
-
+#define	    LCD_Backlight_PORT	GPIOD                       // 背光 GPIO端口
 
 /*---------------------------------------- 常用颜色 ------------------------------------------------------
 
@@ -122,6 +118,5 @@ void LCD_ClearRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height); // 
 //
 // #define 	LCD_Backlight_ON        HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_SET)		// 高电平，开启背光
 // #define 	LCD_Backlight_OFF       HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_RESET)	// 低电平，关闭背光
-
 
 #endif //LED_H
