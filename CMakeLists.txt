@@ -62,7 +62,8 @@ enable_language(C ASM)
 add_executable(${CMAKE_PROJECT_NAME}
         User/Stm32/Src/stm32_usart.c
         User/Stm32/Src/stm32_i2c.c
-#        User/Device/Src/lcd.c
+        User/LCD/Src/key.c
+        #        User/Device/Src/lcd.c
 #        User/Device/Src/lcd_image.c
 #        User/Device/Src/lcd_fonts.c
 #        User/Device/Lcd/Src/lcd_spi_154.c
