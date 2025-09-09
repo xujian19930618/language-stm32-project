@@ -29,6 +29,7 @@
 /* USER CODE BEGIN Includes */
 
 #include "usbd_hid.h"
+#include "key.h"
 // #include "stm32_usart.h"
 
 /* USER CODE END Includes */
@@ -130,22 +131,24 @@ int main(void)
   /* USER CODE END 2 */
 
   /* Init scheduler */
-  osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
-  MX_FREERTOS_Init();
+  // osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
+  // MX_FREERTOS_Init();
 
   /* Start scheduler */
-  osKernelStart();
+  // osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
     while (1) {
-      HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+      if (KEY_Scan())
+      {
+        HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+      }
       // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
       // send_uart_data();
       // SendKeyReport(8, 0x07 );
-      HAL_Delay(1000);
       // ESC_SetThrottle(1100); // 最小油门
       // HAL_Delay(20);
     /* USER CODE END WHILE */

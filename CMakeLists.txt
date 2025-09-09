@@ -62,7 +62,7 @@ enable_language(C ASM)
 add_executable(${CMAKE_PROJECT_NAME}
         User/Stm32/Src/stm32_usart.c
         User/Stm32/Src/stm32_i2c.c
-        User/LCD/Src/key.c
+        User/KEY/Src/key.c
 
 )
 
@@ -86,7 +86,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         Drivers/User/Inc
         User/Device/Inc
         User/Stm32/Inc
-        User/LCD/Inc
+        User/KEY/Inc
         User/EPD/Inc
 )
 
