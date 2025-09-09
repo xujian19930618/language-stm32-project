@@ -63,33 +63,6 @@ add_executable(${CMAKE_PROJECT_NAME}
         User/Stm32/Src/stm32_usart.c
         User/Stm32/Src/stm32_i2c.c
         User/LCD/Src/key.c
-        #        User/Device/Src/lcd.c
-#        User/Device/Src/lcd_image.c
-#        User/Device/Src/lcd_fonts.c
-#        User/Device/Lcd/Src/lcd_spi_154.c
-#        User/Device/Src/key.c
-#        User/Device/Src/74hc165d.c
-#        User/Device/Src/ws2812.c
-#        User/Device/Src/led.c
-#        User/Device/Src/sdio.c
-#        User/Stm32/Src/adc.c
-#        User/Stm32/Src/can.c
-#        User/Stm32/Src/dac.c
-#        User/Stm32/Src/dma.c
-#        User/Stm32/Src/exti.c
-#        User/Stm32/Src/fsmc.c
-#        User/Stm32/Src/gpio.c
-#        User/Stm32/Src/interrupt.c
-#        User/Stm32/Src/pwm.c
-#        User/Stm32/Src/pwr.c
-#        User/Stm32/Src/spi.c
-#        User/Stm32/Src/usb.c
-#        User/Stm32/Src/wwdg.c
-#        User/Device/Src/EPD_GUI.c
-#        User/Device/Src/EPD_SPI.c
-#        User/Device/Src/EPD.c
-#        User/Device/Src/st7789.c
-#        User/Device/Src/fonts.c
 
 )
 
