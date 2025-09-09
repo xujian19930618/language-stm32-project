@@ -15,27 +15,27 @@ set(CMAKE_C_EXTENSIONS ON)
 #
 #set(FETCHCONTENT_FULLY_DISCONNECTED TRUE)
 #include(FetchContent)
-# 设置所有 FetchContent 的下载目录
+## 设置所有 FetchContent 的下载目录
 #set(LVGL_PATH ${CMAKE_SOURCE_DIR}/third_party/lvgl)
 #set(FREERTOS_PATH ${CMAKE_SOURCE_DIR}/third_party/freertos)
 #FetchContent_Declare(
 #        FreeRTOS
-#        GIT_REPOSITORY https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+#        GIT_REPOSITORY https://gitee.com/xujian19930618/free-rtos-kernel.git
 #        GIT_TAG main
 #        SOURCE_DIR ${FREERTOS_PATH}
 #        BINARY_DIR ${FREERTOS_PATH}-build
 #)
-#
+##
 #FetchContent_Declare(
 #        LVGL
-#        GIT_REPOSITORY https://github.com/lvgl/lvgl.git
+#        GIT_REPOSITORY https://gitee.com/xujian19930618/lvgl.git
 #        GIT_TAG release/v9.2
 #        SOURCE_DIR ${LVGL_PATH}        # 指定源码目录
 #        BINARY_DIR ${LVGL_PATH}-build  # 指定构建目录
 #)
-
-
-#FetchContent_MakeAvailable(FreeRTOS)
+#
+#
+#FetchContent_MakeAvailable(LVGL FreeRTOS)
 
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
