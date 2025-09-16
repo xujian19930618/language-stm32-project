@@ -5,7 +5,7 @@
 #ifndef EPD_H
 #define EPD_H
 
-#include "../../Device/Inc/EPD_SPI.h"
+#include "EPD_SPI.h"
 
 #define EPD_W 400
 #define EPD_H 300
