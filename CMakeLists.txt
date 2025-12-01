@@ -45,9 +45,17 @@ endif()
 # Set the project name
 set(CMAKE_PROJECT_NAME language-stm32-project)
 
+
 # Include toolchain file
 include("cmake/gcc-arm-none-eabi.cmake")
+# 添加标准头文件路径，让 arm-none-eabi-gcc 能找到 stdint.h、stdio.h 等
 
+# 新版本
+# set(TOOLCHAIN_PREFIX /opt/homebrew/bin/arm-none-eabi-)
+
+# 旧版本
+set(TOOLCHAIN_PREFIX /opt/homebrew/Cellar/arm-none-eabi-gcc/14.3/bin/arm-none-eabi-)
+#set(TOOLCHAIN_PREFIX /opt/homebrew/Cellar/arm-none-eabi-gcc/14.3/bin/arm-none-eabi-)
 # Enable compile command to ease indexing with e.g. clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
