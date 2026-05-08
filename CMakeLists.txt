@@ -54,7 +54,7 @@ include("cmake/gcc-arm-none-eabi.cmake")
 # set(TOOLCHAIN_PREFIX /opt/homebrew/bin/arm-none-eabi-)
 
 # 旧版本
-set(TOOLCHAIN_PREFIX /opt/homebrew/Cellar/arm-none-eabi-gcc/14.3/bin/arm-none-eabi-)
+set(TOOLCHAIN_PREFIX /opt/ArmGNUToolchain/14.3.rel1/bin/arm-none-eabi-)
 #set(TOOLCHAIN_PREFIX /opt/homebrew/Cellar/arm-none-eabi-gcc/14.3/bin/arm-none-eabi-)
 # Enable compile command to ease indexing with e.g. clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
