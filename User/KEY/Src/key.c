@@ -23,6 +23,8 @@
 
 #include "key.h"
 
+#include "usb_device.h"
+
 
 /*************************************************************************************************
 *	函 数 名:	KEY_Init
@@ -65,4 +67,28 @@ uint8_t KEY_Scan(void)
         }
     }
     return KEY_OFF;
+}
+
+
+// 在main.c里新增（不修改CubeMX生成的文件）
+#include "usbd_hid.h"
+
+// 键盘报告结构体（自定义，不影响库）
+typedef struct {
+    uint8_t modifiers;
+    uint8_t reserved;
+    uint8_t keys[6];
+} HID_KeyboardReport_TypeDef;
+
+// 发送按键的函数（复用库的USBD_HID_SendReport接口）
+void Key_Send_A(void) {
+    HID_KeyboardReport_TypeDef report = {0};
+    report.modifiers = 0x02; // 左Shift
+    report.keys[0] = 0x04;   // A键
+    // 复用CubeMX生成的hUsbDeviceFS句柄
+    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*)&report, 8);
+
+    HAL_Delay(100);
+    memset(&report, 0, sizeof(report));
+    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*)&report, 8);
 }
