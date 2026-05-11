@@ -24,6 +24,8 @@
 #include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
+// #include "lcd_test.h"
+#include "LcdDemo.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -113,6 +115,21 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
     while (1) {
+      // LCD_Clear();
+      //  LCD_Test_Text();
+      // HAL_Delay(500);
+      //  LCD_Test_Variable();
+      // HAL_Delay(500);
+      //  LCD_Test_Color();
+      // HAL_Delay(500);
+      //  LCD_Test_Grahic();
+      // HAL_Delay(500);
+      //  LCD_Test_Image();
+      // HAL_Delay(500);
+      //  LCD_Test_Direction();
+      // HAL_Delay(500);
+      //  LCD_Test_Clear();
+      // HAL_Delay(500);
 
     /* USER CODE END WHILE */
 

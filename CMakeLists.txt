@@ -71,7 +71,8 @@ add_executable(${CMAKE_PROJECT_NAME}
         User/Stm32/Src/stm32_usart.c
         User/Stm32/Src/stm32_i2c.c
         User/KEY/Src/key.c
-#        User/LCD/Src/lcd_fonts.c
+#        User/LcdDemo/Src/LcdDemo.c
+        #        User/LCD/Src/lcd_fonts.c
 #        User/LCD/Src/lcd_image.c
 #        User/LCD/Src/lcd_spi_154.c
 #        User/LCD/Src/lcd_test.c
@@ -101,6 +102,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         User/KEY/Inc
         User/EPD/Inc
         User/LCD/Inc
+#        User/LcdDemo/Inc
 )
 
 # Add project symbols (macros)
