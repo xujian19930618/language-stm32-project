@@ -101,23 +101,28 @@ int main(void)
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
 
+  // SPI_LCD_Init();
   /* USER CODE END 2 */
 
   /* Init scheduler */
-  osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
-  MX_FREERTOS_Init();
+  // osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
+  // MX_FREERTOS_Init();
 
   /* Start scheduler */
-  osKernelStart();
+  // osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
     while (1) {
+      // HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12); // 找一个板子上的 LED 引脚/
       // LCD_Clear();
+      // HAL_Delay(22500);
+      HAL_Delay(1000);
+      HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+      // HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
       //  LCD_Test_Text();
-      // HAL_Delay(500);
       //  LCD_Test_Variable();
       // HAL_Delay(500);
       //  LCD_Test_Color();

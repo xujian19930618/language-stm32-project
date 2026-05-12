@@ -54,7 +54,8 @@ void MX_SPI3_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN SPI3_Init 2 */
-
+  __HAL_SPI_ENABLE(&hspi3);
+  SPI_1LINE_TX(&hspi3);
   /* USER CODE END SPI3_Init 2 */
 
 }

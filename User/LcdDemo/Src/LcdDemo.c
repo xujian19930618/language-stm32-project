@@ -57,46 +57,17 @@ void LCD_WriteData_8bit(uint8_t lcd_data)
 
 void LCD_WriteData_16bit(uint16_t lcd_data)
 {
-    LCD_SPI.Instance->DR = lcd_data >> 8; // 发送数据，高8位
-    while ((LCD_SPI.Instance->SR & 0x0002) == 0); // 等待发送缓冲区清空
-    LCD_SPI.Instance->DR = lcd_data; // 发送数据，低8位
-    while ((LCD_SPI.Instance->SR & 0x0002) == 0); // 等待发送缓冲区清空
+    // 等待上一次彻底发完
+    while (SPI3->SR & SPI_SR_BSY);
+
+    SPI3->DR = (uint8_t)(lcd_data >> 8);
+    while (!(SPI3->SR & SPI_SR_TXE)); // 等待缓冲区空
+
+    SPI3->DR = (uint8_t)(lcd_data & 0xFF);
+    while (!(SPI3->SR & SPI_SR_TXE));
+
+    while (SPI3->SR & SPI_SR_BSY); // 确保这一串 16 位彻底物理发完
 }
-
-/****************************************************************************************************************************************
-*	函 数 名: LCD_WriteBuff
-*
-*	入口参数: DataBuff - 数据区，DataSize - 数据长度
-*
-*	函数功能: 批量写入数据到屏幕
-*
-****************************************************************************************************************************************/
-
-void LCD_WriteBuff(uint16_t* DataBuff, uint16_t DataSize)
-{
-    uint32_t i;
-
-    LCD_SPI.Instance->CR1 &= 0xFFBF; // 关闭SPI
-    LCD_SPI.Instance->CR1 |= 0x0800; // 切换成16位数据格式
-    LCD_SPI.Instance->CR1 |= 0x0040; // 使能SPI
-
-    LCD_CS_L; // 片选拉低，使能IC
-
-    for (i = 0; i < DataSize; i++)
-    {
-        LCD_SPI.Instance->DR = DataBuff[i];
-        while ((LCD_SPI.Instance->SR & 0x0002) == 0); // 等待发送缓冲区清空
-    }
-    while ((LCD_SPI.Instance->SR & 0x0080) != RESET); //	等待通信完成
-    LCD_CS_H; // 片选拉高
-
-    LCD_SPI.Instance->CR1 &= 0xFFBF; // 关闭SPI
-    LCD_SPI.Instance->CR1 &= 0xF7FF; // 切换成8位数据格式
-    LCD_SPI.Instance->CR1 |= 0x0040; // 使能SPI
-}
-
-
-
 
 /****************************************************************************************************************************************
 *	函 数 名: SPI_LCD_Init
@@ -194,10 +165,10 @@ void SPI_LCD_Init(void)
     while ((LCD_SPI.Instance->SR & 0x0080) != RESET); //	等待通信完成
     LCD_CS_H; // 片选拉高
 
-    LCD_Clear(); // 清屏
+    // LCD_Clear(); // 清屏
 
     // 全部设置完毕之后，打开背光
-    LCD_Backlight_ON; // 引脚输出高电平点亮背光
+    // LCD_Backlight_ON; // 引脚输出高电平点亮背光
 }
 
 
@@ -210,33 +181,39 @@ void SPI_LCD_Init(void)
 *	说    明:	先用 LCD_SetBackColor() 设置要清除的背景色，再调用该函数清屏即可
 *
 *****************************************************************************************************************************************/
+// 修改后的地址设置，不再主动拉高 CS
 
-void LCD_Clear(void)
+// 修改后的清屏
+void LCD_Clear()
 {
+    uint16_t color = 0xF800; // 标准红色
     uint32_t i;
+    uint32_t total_pixels = LCD_Width * LCD_Height;
 
-    LCD_SetAddress(0, 0, LCD_Width - 1, LCD_Height - 1); //设置坐标
+    LCD_CS_L;
 
-    LCD_SPI.Instance->CR1 &= 0xFFBF; // 关闭SPI
-    LCD_SPI.Instance->CR1 |= 0x0800; // 切换成16位数据格式
-    LCD_SPI.Instance->CR1 |= 0x0040; // 使能SPI
+    // 1. 设置地址
+    LCD_SetAddress(0, 0, LCD_Width - 1, LCD_Height - 1);
 
-    LCD_CS_L; // 片选拉低，使能IC
+    // 2. 核心：在发像素前，确保之前的 0x2C 指令已经彻底在物理线路上发完了
+    while ((LCD_SPI.Instance->SR & 0x0080) != RESET);
 
-    for (i = 0; i < LCD_Width * LCD_Height; i++)
+    LCD_DC_Data; // 切换到数据模式
+
+    for (i = 0; i < total_pixels; i++)
     {
-        LCD_SPI.Instance->DR = 0xF800;
-        while ((LCD_SPI.Instance->SR & 0x0002) == 0); // 等待发送缓冲区清空
+        // 直接操作寄存器是最快的
+        SPI3->DR = (uint8_t)(color >> 8);
+        while (!(SPI3->SR & 0x0002));
+
+        SPI3->DR = (uint8_t)color;
+        while (!(SPI3->SR & 0x0002));
     }
-    while ((LCD_SPI.Instance->SR & 0x0080) != RESET); //	等待通信完成
-    LCD_CS_H; // 片选拉高
 
-    LCD_SPI.Instance->CR1 &= 0xFFBF; // 关闭SPI
-    LCD_SPI.Instance->CR1 &= 0xF7FF; // 切换成8位数据格式
-    LCD_SPI.Instance->CR1 |= 0x0040; // 使能SPI
+    // 3. 等待最后一颗像素发完再拉高 CS
+    while ((SPI3->SR & 0x0080) != RESET);
+    LCD_CS_H;
 }
-
-
 
 /****************************************************************************************************************************************
 *	函 数 名:	 LCD_SetAddress
@@ -246,21 +223,15 @@ void LCD_Clear(void)
 *
 *	函数功能:   设置需要显示的坐标区域
 *****************************************************************************************************************************************/
-
 void LCD_SetAddress(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 {
-    LCD_CS_L; // 片选拉低，使能IC
-
-    LCD_WriteCommand(0x2a); //	列地址设置，即X坐标
+    LCD_WriteCommand(0x2a);
     LCD_WriteData_16bit(x1);
     LCD_WriteData_16bit(x2);
 
-    LCD_WriteCommand(0x2b); //	行地址设置，即Y坐标
-    LCD_WriteData_16bit(y1 );
+    LCD_WriteCommand(0x2b);
+    LCD_WriteData_16bit(y1);
     LCD_WriteData_16bit(y2);
 
-    LCD_WriteCommand(0x2c); //	开始写入显存，即要显示的颜色数据
-
-    while ((LCD_SPI.Instance->SR & 0x0080) != RESET); //	等待通信完成
-    LCD_CS_H; // 片选拉高
+    LCD_WriteCommand(0x2c); // 准备写显存
 }
